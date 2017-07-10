@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link Saver by Andrew Khokhlov</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+</head>
+<body>
+	<div id="notes">
+		<a @click="isModal = true" href="#"><div id="newNote">
+			<p id="plus">+</p>
+		</div></a>
+		<div class="container" id="notes">
+			<note v-for="note in notes" @update-storage="updateStorage" :key="note.id" :alldata="notes" :data='note'></note>
+		</div>
+		<new :data="newNoteData" @new-note="newNote" @close="isModal = false" v-show="isModal"></new>
+	</div>
+</div>
+</div>
+</body>
+<script type="text/javascript" src="noteComponent.js"></script>
+<script type="text/javascript" src="newComponent.js"></script>
+<script type="text/javascript" src="notes.js"></script>
+</html>
