@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "Link saver",
+  "description": "This extension saves current title and url",
+  "version": "0.0.1",
+  "content_scripts": [{
+     "js": ["vue.js"],
+     "matches": ["https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"]
+   }],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "index.html"
+  },
+  "content_security_policy":"script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js; object-src 'self'",
+  "permissions": [
+    "storage",
+    "tabs",
+    "https://ajax.googleapis.com/",
+    "https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"
+  ]
+}

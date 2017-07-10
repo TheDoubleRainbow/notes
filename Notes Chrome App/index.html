@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link Saver by Andrew Khokhlov</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+
+</head>
+<body>
+	<div id="notes">
+		<a @click="showModal" href="#"><div id="newNote">
+			<p id="plus">+</p>
+		</div></a>
+		<div class="container" id="notes">
+			<div v-for="note in notes" @update-storage="updateStorage" :key="note.id" class="column is-4 is-12-mobile note">
+				<div class="card">
+  					<div class="card-content">
+    					<p class="noteText">
+    						<a target="_blank" :href="note.link"><img class="urlLogo" v-show="note.favic" :src="note.favic" />{{getShortText(note.text)}}</a>	
+    					</p>
+    					<p class="subtitle">
+    						<a class="noteLink" :href="note.link">{{getShortText(note.link)}}</a>
+    					</p>
+  					</div>
+  					<footer class="card-footer">
+   						 <p class="card-footer-item">
+     						 <span>
+        						<a @click="deleteNote(note, notes)" href="#">Delete</a>
+      						 </span>
+    					</p>
+  					</footer>
+				</div>
+			</div>
+		</div>
+		<div :data="newNoteData" v-show="isModal" class="is-active modal">
+  			<div class="modal-background"></div>
+  			<div class="modal-content">
+  			<div class="field">
+    			<p class="control">
+    				<input @keyup.enter='newNoteCheck(newNoteData)' v-model="newNoteData.text" class="input" type="text" placeholder="Name">
+  				</p>
+  			</div>
+  			<div class="field">
+  				<p class="control">
+    				<input @keyup.enter='newNoteCheck(newNoteData)' v-model="newNoteData.link" class="input" type="text" placeholder="Link">
+  				</p>
+  			</div>
+  			<div class="field">
+    			<button @click="newNoteCheck(newNoteData)" class="button is-success">Create new note</button>
+  			</div>
+  		</div>
+  		<button @click="isModal = false" class="modal-close is-large"></button>
+		</div>
+</div>
+</div>
+</div>
+</body>
+<script type="text/javascript" src="noteComponent.js"></script>
+<script type="text/javascript" src="newComponent.js"></script>
+<script type="text/javascript" src="notes.js"></script>
+</html>
